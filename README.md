@@ -23,6 +23,14 @@ In the template...
 
 <div ng-controller="testCtrl">
 	<cjs-doughnut dataset="someData" options="someOptions" segement-stroke-width="5"></cjs-doughnut>
+
+	<!--
+	<cjs-bar></cjs-bar>
+	<cjs-line></cjs-line>
+	<cjs-radar></cjs-radar>
+	<cjs-polar></cjs-polar>
+	<cjs-pie></cjs-pie>
+	-->
 </div>
 
 ```
