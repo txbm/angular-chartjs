@@ -4,12 +4,12 @@ var app = angular.module('testapp', ['chartjs']);
 
 app.controller('testCtrl', function ($scope) {
 	$scope.doughnutData = [
-		{value: 50, color: '#CCC'},
-		{value: 100, color: '#GGG'}
+		{value: 50, color: '#333'},
+		{value: 100, color: '#666'}
 	];
 
 	$scope.doughnutOptions = {
-		'segmentStrokeWidth': 5
+		segmentStrokeWidth: 20
 	};
 
 	$scope.lineData = {
