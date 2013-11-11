@@ -12,7 +12,9 @@
 		},
 		makeChartDirective = function (chartType) {
 			var upper = chartType.charAt(0).toUpperCase() + chartType.slice(1);
-			chartjs.directive('cjs' + upper, function (chartFactory) { return new chartFactory(chartType) });
+			chartjs.directive('cjs' + upper, function (chartFactory) { 
+        return new chartFactory(chartType) 
+      });
 		};
 
 	for (var c in chartTypes) {
