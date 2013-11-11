@@ -1,29 +1,29 @@
 <html lang="en">
-	<head>
-		<script type="text/javascript" src="js/angular-1.0.8.min.js"></script>
-		<script type="text/javascript" src="js/chartjs-0.0.2.min.js"></script>
-		<script type="text/javascript" src="js/angular-chartjs.js"></script>
-		<script type="text/javascript" src="js/app.js"></script>
-	</head>
+    <head>
+        <script type="text/javascript" src="js/angular-1.0.8.min.js"></script>
+        <script type="text/javascript" src="js/chartjs-0.0.2.min.js"></script>
+        <script type="text/javascript" src="js/angular-chartjs.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+    </head>
 
-	<body ng-app="testapp">
+    <body ng-app="testapp">
 
-		<div ng-controller="testCtrl">
-			
-			<cjs-doughnut dataset="doughnutData" options="doughnutOptions" segment-stroke-color="#1C1C1C" segment-stroke-width="2"></cjs-doughnut>
+        <div ng-controller="testCtrl">
+            
+            <cjs-doughnut dataset="doughnutData" options="doughnutOptions" segment-stroke-color="#1C1C1C" segment-stroke-width="2"></cjs-doughnut>
 
-			<cjs-line dataset="lineData"></cjs-line>
+            <cjs-line dataset="lineData"></cjs-line>
 
-			<cjs-bar dataset="barData"></cjs-bar>
+            <cjs-bar dataset="barData"></cjs-bar>
 
-			<cjs-radar dataset="radarData"></cjs-radar>
+            <cjs-radar dataset="radarData"></cjs-radar>
 
-			<cjs-polar dataset="polarData"></cjs-polar>
+            <cjs-polar dataset="polarData"></cjs-polar>
 
-			<cjs-pie dataset="polarData"></cjs-pie>
-			
-		</div>
+            <cjs-pie dataset="polarData"></cjs-pie>
+            
+        </div>
 
-	</body>
+    </body>
 
 </html>
