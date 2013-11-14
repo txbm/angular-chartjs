@@ -70,7 +70,6 @@
             if (!value) {
               return;
             }
-            console.log(value);
             chart[chartType](value, chartOpts);
 
           }, true);
