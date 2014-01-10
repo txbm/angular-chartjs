@@ -66,3 +66,7 @@ There are no unit tests currently written because the demo proves that everythin
 
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/petermelias/angular-chartjs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
