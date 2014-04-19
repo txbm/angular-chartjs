@@ -17,13 +17,21 @@
       });
     },
     sizeChart = function (width, height, canvas) {
-      canvas.width = width;
-      canvas.height = height;
+      var oW = canvas.width,
+          oH = canvas.height;
+      
+      if (oW !== width || oH !== height) {      
+        canvas.width = width;
+        canvas.height = height;
+        return true;
+      }
+
+      return false;
     },
     fitChart = function (canvas, element) {
       var w = element.parent().prop('offsetWidth'),
           h = element.parent().prop('offsetHeight');
-      sizeChart(w, h, canvas);
+      return sizeChart(w, h, canvas);
     };
 
   for (var c in chartTypes) {
@@ -67,12 +75,19 @@
               chartOpts = {},
               specOpts = [],
               autofit = scope.autofit,
-              drawChart = function (value) {
-                if (autofit) {
-                  fitChart(ctx.canvas, element);
+              bound = false,
+              drawChart = function (value, forceRedraw) {
+                if ((autofit && fitChart(ctx.canvas, element)) || forceRedraw) {
+                  chart = new Chart(ctx);
+                  chart[chartType](value, chartOpts);
                 }
-                chart = new Chart(ctx);
-                chart[chartType](value, chartOpts);
+
+                if (!bound) {
+                  angular.element(window).bind('resize', function () {
+                    drawChart(value);
+                  });
+                  bound = true;
+                }
               };
 
           // hack to get default params out of protected scope from ChartJS
@@ -89,7 +104,7 @@
               return;
             }
 
-            drawChart(value);
+            drawChart(value, true);
 
           }, true);
         }
