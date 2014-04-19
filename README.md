@@ -40,6 +40,11 @@ In the template...
 </div>
 
 <!-- This will cause the graph to fill the size of the container -->
+<!-- If you use dynamic containers for your graphs, this plugin will not
+	 redraw unless the actual container size has changed during a window
+	 resize. i.e. you might resize the window but the container is not impacted.
+	 more efficient basically.
+-->
 
 ```
 
