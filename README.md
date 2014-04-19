@@ -33,6 +33,14 @@ In the template...
 	-->
 </div>
 
+<!-- To use autofit option -->
+
+<div id="my-container" style="height: 450px; width: 700px;">
+	<cjs-pie dataset="someData" autofit="true"></cjs-pie>
+</div>
+
+<!-- This will cause the graph to fill the size of the container -->
+
 ```
 
 In the controller...
