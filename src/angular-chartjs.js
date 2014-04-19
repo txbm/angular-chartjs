@@ -15,6 +15,15 @@
       chartjs.directive('cjs' + upper, function (chartFactory) { 
         return new chartFactory(chartType) 
       });
+    },
+    sizeChart = function (width, height, canvas) {
+      canvas.width = width;
+      canvas.height = height;
+    },
+    fitChart = function (canvas, element) {
+      var w = element.parent().prop('offsetWidth'),
+          h = element.parent().prop('offsetHeight');
+      sizeChart(w, h, canvas);
     };
 
   for (var c in chartTypes) {
@@ -49,13 +58,22 @@
         replace: true,
         scope: {
           dataset: '=',
-          options: '='
+          options: '=',
+          autofit: '='
         },
         link: function postLink(scope, element, attrs) {
           var ctx = element[0].getContext('2d'),
-            chart = new Chart(ctx),
-            chartOpts = {},
-            specOpts = [];
+              chart = new Chart(ctx),
+              chartOpts = {},
+              specOpts = [],
+              autofit = scope.autofit,
+              drawChart = function (value) {
+                if (autofit) {
+                  fitChart(ctx.canvas, element);
+                }
+                chart = new Chart(ctx);
+                chart[chartType](value, chartOpts);
+              };
 
           // hack to get default params out of protected scope from ChartJS
           try {
@@ -70,7 +88,8 @@
             if (!value) {
               return;
             }
-            chart[chartType](value, chartOpts);
+
+            drawChart(value);
 
           }, true);
         }
