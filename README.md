@@ -73,6 +73,9 @@ If you want to see an example for every chart, download the library and go to th
 
 All charts and options work. No actual JS (beyond the dataset) is required to use this directive set unless you want to bulk specify many options, in which case it's better to do that in the controller.
 
+You can also run this example online through the following plunker: http://embed.plnkr.co/pC7gJ7/preview
+
+
 ## Tests
 
 There are no unit tests currently written because the demo proves that everything works. I will add unit tests later, but it will be a formality. If you want to verify this, launch the test/app/index.html page.
