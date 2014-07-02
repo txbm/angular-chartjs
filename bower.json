@@ -1,0 +1,22 @@
+{
+  "name": "angular-chartjs",
+  "version": "0.0.2",
+  "homepage": "https://github.com/petermelias/angular-chartjs",
+  "authors": [
+    "Peter M. Elias <petermelias@gmail.com>"
+  ],
+  "description": "Fully featured AngularJS bindings for ChartJS",
+  "main": "src/angular-chartjs.js",
+  "keywords": [
+    "angularjs",
+    "chartjs"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -19,13 +19,11 @@
     sizeChart = function (width, height, canvas) {
       var oW = canvas.width,
           oH = canvas.height;
-      
       if (oW !== width || oH !== height) {      
         canvas.width = width;
         canvas.height = height;
         return true;
       }
-
       return false;
     },
     fitChart = function (canvas, element) {
@@ -90,12 +88,12 @@
                 }
               };
 
-          // hack to get default params out of protected scope from ChartJS
+          // HACK: to get default params out of protected scope from ChartJS
           try {
             chart[chartType]([], {});
           } catch (e) {}
           specOpts = Object.keys(chart[chartType].defaults);
-          // end hack
+          // ENDHACK
 
           angular.extend(chartOpts, scope.options, extractSpecOpts(specOpts, attrs));
 
@@ -103,9 +101,7 @@
             if (!value) {
               return;
             }
-
             drawChart(value, true);
-
           }, true);
         }
       }
