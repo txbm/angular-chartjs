@@ -18,5 +18,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "chartjs": ">=0.0.2",
+    "angular": ">=1.0.8"
+  }
 }

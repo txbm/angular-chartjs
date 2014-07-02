@@ -4,13 +4,28 @@ A fully functional directive set for the ChartJS library. Supports data bindings
 
 ## Installation
 
-```html
 
+#### Bower command
+
+```bash
+bower install ng-chartjs
+```
+
+#### Include
+
+
+```html
 <!-- 
-Include Angular
+Include AngularJS
 Include ChartJS >= 0.2
 -->
-<script type="text/javascript" src="angular-chartjs.js"></script>
+<script type="text/javascript" src="bower_components/ng-chartjs/src/angular-chartjs.js"></script>
+```
+
+#### Module Dependency
+
+```javascript
+var app = angular.module('myApp', ['chartjs']);
 ```
 
 ## Usage
