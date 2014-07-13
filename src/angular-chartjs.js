@@ -12,14 +12,14 @@
     },
     makeChartDirective = function (chartType) {
       var upper = chartType.charAt(0).toUpperCase() + chartType.slice(1);
-      chartjs.directive('cjs' + upper, function (chartFactory) { 
-        return new chartFactory(chartType) 
+      chartjs.directive('cjs' + upper, function (chartFactory) {
+        return new chartFactory(chartType)
       });
     },
     sizeChart = function (width, height, canvas) {
       var oW = canvas.width,
           oH = canvas.height;
-      if (oW !== width || oH !== height) {      
+      if (oW !== width || oH !== height) {
         canvas.width = width;
         canvas.height = height;
         return true;
@@ -41,10 +41,10 @@
 
       var chartType = chartTypes[chartType],
         extractSpecOpts = function (opts, attrs) {
-          var i = opts.length, 
+          var i = opts.length,
             extracted = {},
             cv;
-          
+
           while (i--) {
             cv = attrs[opts[i]];
             if (typeof(cv) !== 'undefined') {
