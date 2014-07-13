@@ -12,9 +12,9 @@
     },
     makeChartDirective = function (chartType) {
       var upper = chartType.charAt(0).toUpperCase() + chartType.slice(1);
-      chartjs.directive('cjs' + upper, function (chartFactory) {
+      chartjs.directive('cjs' + upper, ['chartFactory', function (chartFactory) {
         return new chartFactory(chartType)
-      });
+      }]);
     },
     sizeChart = function (width, height, canvas) {
       var oW = canvas.width,
