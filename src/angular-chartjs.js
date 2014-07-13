@@ -1,6 +1,5 @@
-'use strict';
-
 (function () {
+ 'use strict';
   var chartjs = angular.module('chartjs', []),
     chartTypes = {
       line: 'Line',
@@ -12,8 +11,8 @@
     },
     makeChartDirective = function (chartType) {
       var upper = chartType.charAt(0).toUpperCase() + chartType.slice(1);
-      chartjs.directive('cjs' + upper, ['chartFactory', function (chartFactory) {
-        return new chartFactory(chartType)
+      chartjs.directive('cjs' + upper, ['ChartFactory', function (ChartFactory) {
+        return new ChartFactory(chartType);
       }]);
     },
     sizeChart = function (width, height, canvas) {
@@ -36,11 +35,11 @@
     makeChartDirective(c);
   }
 
-  chartjs.factory('chartFactory', function () {
+  chartjs.factory('ChartFactory', function () {
     return function (chartType) {
 
-      var chartType = chartTypes[chartType],
-        extractSpecOpts = function (opts, attrs) {
+      chartType = chartTypes[chartType];
+      var extractSpecOpts = function (opts, attrs) {
           var i = opts.length,
             extracted = {},
             cv;
@@ -111,7 +110,7 @@
             drawChart(value, true);
           }, true);
         }
-      }
-    }
+      };
+    };
   });
 })();
