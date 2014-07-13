@@ -92,7 +92,14 @@
           try {
             chart[chartType]([], {});
           } catch (e) {}
-          specOpts = Object.keys(chart[chartType].defaults);
+          // Chart.js < 1.0.0
+          if (chart[chartType].defaults) {
+            specOpts = Object.keys(chart[chartType].defaults);
+          }
+          // Chart.js >= 1.0.0
+          else if(Chart.defaults[chartType]) {
+            specOpts = Object.keys(Chart.defaults[chartType]);
+          }
           // ENDHACK
 
           angular.extend(chartOpts, scope.options, extractSpecOpts(specOpts, attrs));
