@@ -20,7 +20,7 @@
           oH = canvas.height;
       if (oW !== width || oH !== height) {
         canvas.width = width;
-        canvas.height = height;
+        //canvas.height = height;
         return true;
       }
       return false;
