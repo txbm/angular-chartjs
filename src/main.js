@@ -12,14 +12,14 @@
     },
     makeChartDirective = function (chartType) {
       var upper = chartType.charAt(0).toUpperCase() + chartType.slice(1);
-      chartjs.directive('cjs' + upper, function (chartFactory) { 
-        return new chartFactory(chartType) 
-      });
+      chartjs.directive('cjs' + upper, ['ChartFactory', function (ChartFactory) {
+        return new ChartFactory(chartType);
+      }]);
     },
     sizeChart = function (width, height, canvas) {
       var oW = canvas.width,
           oH = canvas.height;
-      if (oW !== width || oH !== height) {      
+      if (oW !== width || oH !== height) {
         canvas.width = width;
         canvas.height = height;
         return true;
@@ -36,15 +36,15 @@
     makeChartDirective(c);
   }
 
-  chartjs.factory('chartFactory', function () {
+  chartjs.factory('ChartFactory', function () {
     return function (chartType) {
 
-      var chartType = chartTypes[chartType],
-        extractSpecOpts = function (opts, attrs) {
-          var i = opts.length, 
+      chartType = chartTypes[chartType];
+      var extractSpecOpts = function (opts, attrs) {
+          var i = opts.length,
             extracted = {},
             cv;
-          
+
           while (i--) {
             cv = attrs[opts[i]];
             if (typeof(cv) !== 'undefined') {
@@ -92,7 +92,14 @@
           try {
             chart[chartType]([], {});
           } catch (e) {}
-          specOpts = Object.keys(chart[chartType].defaults);
+          // Chart.js < 1.0.0
+          if (chart[chartType].defaults) {
+            specOpts = Object.keys(chart[chartType].defaults);
+          }
+          // Chart.js >= 1.0.0
+          else if(Chart.defaults[chartType]) {
+            specOpts = Object.keys(Chart.defaults[chartType]);
+          }
           // ENDHACK
 
           angular.extend(chartOpts, scope.options, extractSpecOpts(specOpts, attrs));
@@ -104,7 +111,7 @@
             drawChart(value, true);
           }, true);
         }
-      }
-    }
+      };
+    };
   });
 })();
