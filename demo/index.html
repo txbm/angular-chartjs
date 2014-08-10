@@ -1,0 +1,16 @@
+<html lang="en">
+	<head>
+		<script type="text/javascript" src="Chart-1.0.1-beta.3.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+		<script type="text/javascript" src="angular-chartjs.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+	</head>
+
+	<body ng-app="demo-angular-chartjs">
+
+		<section class="test-chart" ng-controller="TestCtrl" style="width: 50%; margin: 0 auto;">
+			<cjs-line dataset="lineChartData" responsive="true"></cjs-line>
+		</section>
+
+	</body>
+</html>

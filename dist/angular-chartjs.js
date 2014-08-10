@@ -42,8 +42,8 @@
       chartType = chartTypes[chartType];
       var extractSpecOpts = function (opts, attrs) {
           var i = opts.length,
-            extracted = {},
-            cv;
+              extracted = {},
+              cv;
 
           while (i--) {
             cv = attrs[opts[i]];
@@ -64,51 +64,34 @@
         replace: true,
         scope: {
           dataset: '=',
-          options: '=',
-          autofit: '='
+          options: '='
         },
         link: function postLink(scope, element, attrs) {
           var ctx = element[0].getContext('2d'),
               chart = new Chart(ctx),
-              chartOpts = {},
-              specOpts = [],
-              autofit = scope.autofit,
-              bound = false,
-              drawChart = function (value, forceRedraw) {
-                if ((autofit && fitChart(ctx.canvas, element)) || forceRedraw) {
-                  chart = new Chart(ctx);
-                  chart[chartType](value, chartOpts);
-                }
+              chartOpts = {};
 
-                if (!bound) {
-                  angular.element(window).bind('resize', function () {
-                    drawChart(value);
-                  });
-                  bound = true;
-                }
-              };
+          angular.extend(
+            chartOpts, 
+            Chart.defaults.global,
+            Chart.defaults[chartType]
+          );
 
-          // HACK: to get default params out of protected scope from ChartJS
-          try {
-            chart[chartType]([], {});
-          } catch (e) {}
-          // Chart.js < 1.0.0
-          if (chart[chartType].defaults) {
-            specOpts = Object.keys(chart[chartType].defaults);
-          }
-          // Chart.js >= 1.0.0
-          else if(Chart.defaults[chartType]) {
-            specOpts = Object.keys(Chart.defaults[chartType]);
-          }
-          // ENDHACK
+          angular.extend(
+            chartOpts, 
+            scope.options,
+            extractSpecOpts(
+              chartOpts,
+              attrs
+            )
+          );
+          
+          chart = chart[chartType](scope.dataset, chartOpts);
 
-          angular.extend(chartOpts, scope.options, extractSpecOpts(specOpts, attrs));
+          console.log(chartOpts);
 
-          scope.$watch('dataset', function (value) {
-            if (!value) {
-              return;
-            }
-            drawChart(value, true);
+          scope.$watch('dataset', function (dataset) {
+            chart.update();
           }, true);
         }
       };
