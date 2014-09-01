@@ -21,6 +21,28 @@ var app = angular.module('demo-angular-chartjs', ['chartjs']);
         }
       ]
     };
+    
+    $scope.lineChartData2 = {
+      labels: [
+        'Apr', 
+        'May', 
+        'Jun'
+      ],
+      datasets: [
+        {
+          data: [1, 7, 15, 19, 31, 40]
+        },
+        {
+          data: [6, 12, 18, 24, 30, 36]
+        }
+      ]
+    };
+    
+    $scope.activeData = $scope.lineChartData;
+
+    $scope.swapData = function () {
+      $scope.activeData = $scope.lineChartData2;
+    };
   });
 
 })();

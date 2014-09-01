@@ -41,14 +41,13 @@
 
       chartType = chartTypes[chartType];
       var extractSpecOpts = function (opts, attrs) {
-          var i = opts.length,
-              extracted = {},
-              cv;
+          var extracted = {},
+              k, c;
 
-          while (i--) {
-            cv = attrs[opts[i]];
-            if (typeof(cv) !== 'undefined') {
-              extracted[opts[i]] = cv;
+          for (k in opts) {
+            c = attrs[k];
+            if (typeof(c) !== 'undefined') {
+              extracted[k] = c;
             }
           }
           return extracted;
@@ -85,13 +84,11 @@
               attrs
             )
           );
-          
+      
           chart = chart[chartType](scope.dataset, chartOpts);
 
-          console.log(chartOpts);
-
-          scope.$watch('dataset', function (dataset) {
-            chart.update();
+          scope.$watch('dataset', function (newData, oldData) {
+            chart.initialize(newData);
           }, true);
         }
       };

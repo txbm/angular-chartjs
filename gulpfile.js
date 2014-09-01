@@ -21,9 +21,11 @@
         ],
         includeDevPackages: true
       });
+      
+  require('gulp-help')(gulp);
 
 
-  gulp.task('test-js', function (done) {
+  gulp.task('test-js', 'Tests the JS source.', function (done) {
     var karmaConfig = {
           browsers: ['PhantomJS'],
           frameworks: ['mocha', 'chai'],
@@ -38,7 +40,7 @@
     karma.start(karmaConfig, done);
   });
 
-  gulp.task('build-js', [], function (done) {
+  gulp.task('build-js', 'Builds the JS source.',  [], function (done) {
     gulp.src(jsSrcGlob)
     .pipe(plugins.concat('angular-chartjs.js'))
     .pipe(gulp.dest('dist'))
@@ -47,15 +49,19 @@
     .pipe(gulp.dest('dist'))
     .on('end', done);
   });
+  
+  gulp.task('watch-js', 'Watches and builds the JS source', [], function () {
+    gulp.watch(jsSrcGlob, ['build-js']);
+  });
 
-  gulp.task('serve', function () {
+  gulp.task('serve', 'Fire up a dev server', function () {
     plugins.connect.server({
       root: 'demo',
       port: 8000
     });
   });
 
-  gulp.task('develop', ['serve'], function () {
+  gulp.task('develop', 'Fire up a dev server and watch for source changes',  ['serve'], function () {
     gulp.watch(jsSrcGlob, ['build-js']);
   });
 
