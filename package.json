@@ -1,8 +1,8 @@
 {
   "name": "angular-chartjs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Angular bindings for the HTML5 Canvas Chart library-- Chart.js",
-  "main": "src/js/main.js",
+  "main": "dist/angular-chartjs.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

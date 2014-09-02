@@ -1,12 +1,12 @@
 {
   "name": "ng-chartjs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/petermelias/angular-chartjs",
   "authors": [
     "Peter M. Elias <petermelias@gmail.com>"
   ],
   "description": "Fully featured AngularJS bindings for ChartJS",
-  "main": "src/angular-chartjs.js",
+  "main": "dist/angular-chartjs.min.js",
   "keywords": [
     "angularjs",
     "chartjs"
