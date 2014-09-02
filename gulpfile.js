@@ -24,6 +24,17 @@
       
   require('gulp-help')(gulp);
 
+  function _reloadPkgFile() {
+    delete require.cache[require.resolve('./package.json')];
+    pkg = require('./package.json');
+  }
+
+  gulp.task('jshint', 'JSHints the source', function (done) {
+    gulp.src('src/*')
+    .pipe(plugins.jshint())
+    .pipe(plugins.jshint.reporter('default'))
+    .on('finish', done);
+  });
 
   gulp.task('test-js', 'Tests the JS source.', function (done) {
     var karmaConfig = {
