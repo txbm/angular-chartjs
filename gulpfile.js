@@ -30,7 +30,7 @@
   }
 
   gulp.task('jshint', 'JSHints the source', function (done) {
-    gulp.src('src/*')
+    gulp.src(jsSrcGlob)
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('default'))
     .on('finish', done);
