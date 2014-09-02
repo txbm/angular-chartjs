@@ -20,7 +20,7 @@
     "tests"
   ],
   "dependencies": {
-    "Chart.js": "git@github.com:nnnick/Chart.js#v1.0.1-beta.3",
+    "Chart.js": ">=v1.0.1-beta.3",
     "angular": "~1.2.21"
   },
   "devDependencies": {

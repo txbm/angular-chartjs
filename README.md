@@ -1,5 +1,6 @@
 ## angular-chartjs
-=======================
+
+
 [![Build Status](http://img.shields.io/travis/petermelias/angular-chartjs.svg)](https://travis-ci.org/petermelias/angular-chartjs)
 [![Coverage](http://img.shields.io/coveralls/petermelias/angular-chartjs.svg)](https://coveralls.io/r/petermelias/angular-chartjs)
 [![NPM Downloads](http://img.shields.io/npm/dm/angular-chartjs.svg)](https://www.npmjs.org/package/angular-chartjs)
