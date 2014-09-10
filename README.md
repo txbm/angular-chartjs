@@ -65,7 +65,7 @@ In the controller...
 
 ```javascript
 myapp.controller('testCtrl', function ($scope) {
-	$scope.someData = [
+	$scope.someData = {
 		labels: [
         'Apr', 
         'May', 
@@ -79,7 +79,7 @@ myapp.controller('testCtrl', function ($scope) {
           data: [6, 12, 18, 24, 30, 36]
         }
       ]
-	];
+	};
 
 	$scope.someOptions = {
 		segementStrokeWidth: 20,
