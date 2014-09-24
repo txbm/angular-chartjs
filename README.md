@@ -32,7 +32,7 @@ npm install angular-chartjs
 Include Angular ~1.2.21
 Include Chart.js >= v1.0.1-beta.3
 -->
-<script type="text/javascript" src="bower_components/ng-chartjs/src/angular-chartjs.js"></script>
+<script type="text/javascript" src="bower_components/ng-chartjs/dist/angular-chartjs.js"></script>
 ```
 
 and in your app init...
