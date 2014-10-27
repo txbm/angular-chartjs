@@ -75,6 +75,14 @@
           scope.$watch('dataset', function (newData, oldData) {
             chart.initialize(newData);
           }, true);
+
+          scope.$watch('options', function (newData, oldData) {
+            angular.extend(
+              chart.options, 
+              scope.options
+            );
+          }, true);
+          
         }
       };
     };
