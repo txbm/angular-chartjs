@@ -15,21 +15,6 @@
       chartjs.directive('cjs' + upper, ['ChartFactory', function (ChartFactory) {
         return new ChartFactory(chartType);
       }]);
-    },
-    sizeChart = function (width, height, canvas) {
-      var oW = canvas.width,
-          oH = canvas.height;
-      if (oW !== width || oH !== height) {
-        canvas.width = width;
-        canvas.height = height;
-        return true;
-      }
-      return false;
-    },
-    fitChart = function (canvas, element) {
-      var w = element.parent().prop('offsetWidth'),
-          h = element.parent().prop('offsetHeight');
-      return sizeChart(w, h, canvas);
     };
 
   for (var c in chartTypes) {
@@ -90,6 +75,14 @@
           scope.$watch('dataset', function (newData, oldData) {
             chart.initialize(newData);
           }, true);
+
+          scope.$watch('options', function (newData, oldData) {
+            angular.extend(
+              chart.options, 
+              scope.options
+            );
+          }, true);
+          
         }
       };
     };
