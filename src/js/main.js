@@ -44,14 +44,14 @@
 
       return {
         restrict: 'EAC',
-        template: '<canvas></canvas>',
+        template: '<div><canvas class="cjs-chart"></canvas><legend class="cjs-legend"></legend></div>',
         replace: true,
         scope: {
           dataset: '=',
           options: '='
         },
         link: function postLink(scope, element, attrs) {
-          var ctx = element[0].getContext('2d'),
+          var ctx = element[0].children[0].getContext('2d'),
               chart = new Chart(ctx),
               chartOpts = {};
 
@@ -71,6 +71,7 @@
           );
       
           chart = chart[chartType](scope.dataset, chartOpts);
+          element[0].children[1].innerHTML = chart.generateLegend();
 
           scope.$watch('dataset', function (newData, oldData) {
             chart.initialize(newData);
