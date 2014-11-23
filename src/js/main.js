@@ -75,6 +75,7 @@
 
           scope.$watch('dataset', function (newData, oldData) {
             chart.initialize(newData);
+            element[0].children[1].innerHTML = chart.generateLegend();
           }, true);
 
           scope.$watch('options', function (newData, oldData) {
