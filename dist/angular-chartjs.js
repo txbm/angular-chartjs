@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  
+
   var chartjs = angular.module('chartjs', []),
     chartTypes = {
       line: 'Line',
@@ -44,47 +44,73 @@
 
       return {
         restrict: 'EAC',
-        template: '<canvas></canvas>',
+        template: '<div><canvas class="cjs-chart"></canvas></div>',
         replace: true,
+        require: '?legend',
         scope: {
           dataset: '=',
-          options: '='
+          options: '=',
+          legend: '@'
         },
         link: function postLink(scope, element, attrs) {
-          var ctx = element[0].getContext('2d'),
+          var chartEl;
+          var legendEl;
+
+          if(attrs.legend === 'before') {
+            element.prepend('<div class="cjs-legend"></div>');
+            chartEl = element[0].children[1];
+            legendEl = element[0].children[0];
+          }
+
+          if (attrs.legend === 'after' || !attrs.legend ) {
+            element.append('<div class="cjs-legend"></div>');
+            chartEl = element[0].children[0];
+            legendEl = element[0].children[1];
+          }
+
+          var ctx = chartEl.getContext('2d'),
               chart = new Chart(ctx),
               chartOpts = {};
 
           angular.extend(
-            chartOpts, 
+            chartOpts,
             Chart.defaults.global,
             Chart.defaults[chartType]
           );
 
           angular.extend(
-            chartOpts, 
+            chartOpts,
             scope.options,
             extractSpecOpts(
               chartOpts,
               attrs
             )
           );
-      
+
           chart = chart[chartType](scope.dataset, chartOpts);
+          legendEl.innerHTML = chart.generateLegend();
 
           scope.$watch('dataset', function (newData, oldData) {
             chart.initialize(newData);
+            legendEl.innerHTML = chart.generateLegend();
           }, true);
 
           scope.$watch('options', function (newData, oldData) {
             angular.extend(
-              chart.options, 
+              chart.options,
               scope.options
             );
           }, true);
-          
+
         }
       };
     };
   });
+
+  chartjs.directive('legend', function() {
+    return {
+      controller: function($scope) {}
+    }
+  });
+
 })();
