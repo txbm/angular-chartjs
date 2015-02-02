@@ -49,7 +49,7 @@ In the template...
 
 ```html
 <div ng-controller="testCtrl">
-	<cjs-doughnut dataset="someData" options="someOptions" segement-stroke-width="5"></cjs-doughnut>
+	<cjs-doughnut dataset="someData" options="someOptions" segement-stroke-width="5" legend="before"></cjs-doughnut>
 
 	<!--
 	<cjs-bar></cjs-bar>
@@ -60,6 +60,7 @@ In the template...
 	-->
 </div>
 ```
+Legend is optional, the default behavior is to apear before. Available options: before, after, none.
 
 In the controller...
 
@@ -67,8 +68,8 @@ In the controller...
 myapp.controller('testCtrl', function ($scope) {
 	$scope.someData = {
 		labels: [
-        'Apr', 
-        'May', 
+        'Apr',
+        'May',
         'Jun'
       ],
       datasets: [
@@ -88,7 +89,7 @@ myapp.controller('testCtrl', function ($scope) {
 });
 ```
 
-This will result in a Doughnut chart using the dataset from the controller with a StrokeColor of #000 and a StrokeWidth of 5 because options set on the directive attributes override controller level settings for maximum flexibility.
+This will result in a Doughnut chart using the dataset from the controller with a StrokeColor of #000, a legend apearing before the graph and a StrokeWidth of 5 because options set on the directive attributes override controller level settings for maximum flexibility.
 
 ### Examples
 

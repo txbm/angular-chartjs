@@ -68,6 +68,11 @@
             legendEl = element[0].children[1];
           }
 
+          if(attrs.legend === 'none') {
+            chartEl = element[0].children[0];
+            legendEl = null;
+          }
+
           var ctx = chartEl.getContext('2d'),
               chart = new Chart(ctx),
               chartOpts = {};
@@ -88,11 +93,15 @@
           );
 
           chart = chart[chartType](scope.dataset, chartOpts);
-          legendEl.innerHTML = chart.generateLegend();
+          if(attrs.legend != 'none') {
+            legendEl.innerHTML = chart.generateLegend();
+          }
 
           scope.$watch('dataset', function (newData, oldData) {
             chart.initialize(newData);
-            legendEl.innerHTML = chart.generateLegend();
+            if(attrs.legend != 'none') {
+              legendEl.innerHTML = chart.generateLegend();
+            }
           }, true);
 
           scope.$watch('options', function (newData, oldData) {
