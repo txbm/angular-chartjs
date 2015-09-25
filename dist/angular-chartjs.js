@@ -44,16 +44,14 @@
 
       return {
         restrict: 'EAC',
-        template: '<canvas></canvas>',
+        template: '<div><legend class="cjs-legend"></legend></div>',
         replace: true,
         scope: {
           dataset: '=',
           options: '='
         },
         link: function postLink(scope, element, attrs) {
-          var ctx = element[0].getContext('2d'),
-              chart = new Chart(ctx),
-              chartOpts = {};
+          var chartOpts = {};
 
           angular.extend(
             chartOpts, 
@@ -70,7 +68,16 @@
             )
           );
       
+          var canvas = document.createElement('canvas');
+          element.prepend(canvas);
+          if (typeof(G_vmlCanvasManager) != 'undefined') canvas = G_vmlCanvasManager.initElement(canvas);
+          if (chartOpts.autofit) fitChart(canvas, element);
+          var ctx = canvas.getContext('2d');
+
+          var chart = new Chart(ctx);
+
           chart = chart[chartType](scope.dataset, chartOpts);
+          element[0].children[1].innerHTML = chart.generateLegend();
 
           scope.$watch('dataset', function (newData, oldData) {
             chart.initialize(newData);
